@@ -5,12 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PhysReason: A Comprehensive Benchmark towards Physics-Based Reasoning </title>
     <style>
+        .resource-links {
+        background: linear-gradient(135deg, #f6f8fa, #fff);
+        padding: 1.5rem;
+        border-radius: 12px;
+        margin: 2rem 0;
+        box-shadow: var(--shadow-sm);
+    }
+
+        .resource-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .resource-links h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .resource-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .resource-links li {
+            margin: 0.8rem 0;
+        }
+
+        .resource-links a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary-color);
+            padding: 0.8rem 1.2rem;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .resource-links a:hover {
+            background: #f8f9fa;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .link-icon {
+            margin-left: 0.5rem;
+            font-size: 0.9em;
+        }
         :root {
             --primary-color: #1a73e8;
             --secondary-color: #2c3e50;
             --border-color: #e9ecef;
             --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
             --shadow-md: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        @media screen and (max-width: 768px) {
+            .resource-links {
+                padding: 1rem;
+                margin: 1rem 0;
+            }
+
+            .resource-links a {
+                padding: 0.6rem 1rem;
+            }
         }
 
         * {
@@ -145,7 +205,7 @@
             background-color: #f8f9fa;
             transition: background-color 0.2s ease;
         }
-
+        
         /* Responsive improvements */
         @media screen and (max-width: 768px) {
             body {
@@ -250,7 +310,27 @@
     <!-- Previous content remains the same -->
     <div class="title-container">
         <h1 class="title">PhysReason: A Comprehensive Benchmark towards Physics-Based Reasoning</h1>
+        <p class="subtitle">towards Physics-Based Reasoning</p>
     </div>
+    <div class="resource-links">
+    <div class="resource-container">
+        <h3>Resources</h3>
+        <ul>
+            <li>
+                <a href="https://huggingface.co/datasets/zhibei1204/PhysReason" target="_blank" rel="noopener noreferrer">
+                    Dataset: PhysReason on Hugging Face 
+                    <span class="link-icon">↗</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/dxzxy12138/PhysReason" target="_blank" rel="noopener noreferrer">
+                    Code: GitHub Repository
+                    <span class="link-icon">↗</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
     <nav>
         <ul>
             <li><a href="#benchmark">Benchmark</a></li>
@@ -779,4 +859,39 @@
         </figure>
     </section>
 </body>
+<footer>
+    <div class="footer-content">
+        <p>
+            For more information and detailed documentation, please visit the 
+            <a href="https://github.com/dxzxy12138/PhysReason" target="_blank" rel="noopener noreferrer">GitHub repository</a> 
+            or access the dataset on 
+            <a href="https://huggingface.co/datasets/zhibei1204/PhysReason" target="_blank" rel="noopener noreferrer">Hugging Face</a>.
+        </p>
+    </div>
+</footer>
+
+<style>
+    /* Add these footer styles */
+    footer {
+        margin-top: 4rem;
+        padding: 2rem;
+        background: #f8f9fa;
+        border-top: 1px solid var(--border-color);
+        text-align: center;
+    }
+
+    .footer-content {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    footer a {
+        color: var(--primary-color);
+        text-decoration: none;
+    }
+
+    footer a:hover {
+        text-decoration: underline;
+    }
+</style>
 </html>
