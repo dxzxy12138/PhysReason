@@ -190,6 +190,60 @@
                 transform: translateY(0);
             }
         }
+    /* 在 style 标签中添加或修改以下样式 */
+
+    figure {
+        margin: 2rem 0;
+        width: 100%;
+        max-width: 900px; /* 限制最大宽度 */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        /* 添加图片加载动画 */
+        opacity: 0;
+        animation: fadeIn 0.5s ease forwards;
+    }
+
+    figcaption {
+        text-align: center;
+        color: #666;
+        margin-top: 1rem;
+        font-style: italic;
+        font-size: 0.95rem;
+        padding: 0.5rem;
+    }
+
+    /* 图片加载动画 */
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* 响应式调整 */
+    @media screen and (max-width: 768px) {
+        figure {
+            max-width: 100%;
+            margin: 1.5rem 0;
+        }
+        
+        img {
+            border-radius: 6px;
+        }
+        
+        figcaption {
+            font-size: 0.9rem;
+            margin-top: 0.8rem;
+        }
+    }
     </style>
 </head>
 <body>
