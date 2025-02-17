@@ -201,97 +201,242 @@
             <li>Difficulty Classification: Based on solving time and theorem complexity</li>
         </ul>
 
+        <table>
+            <caption>Table 1: Comparison with Existing Benchmarks</caption>
+            <thead>
+                <tr>
+                    <th rowspan="2">Benchmark</th>
+                    <th rowspan="2">Multi-modal</th>
+                    <th rowspan="2">Size</th>
+                    <th rowspan="2">Knowledge</th>
+                    <th colspan="2">Question</th>
+                    <th colspan="3">Solution</th>
+                </tr>
+                <tr>
+                    <th>Type</th>
+                    <th>Avg. T</th>
+                    <th>Step-by-step</th>
+                    <th>Avg. T</th>
+                    <th>Avg. S</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>JEEBench</td>
+                    <td>❌</td>
+                    <td>123</td>
+                    <td>CEE</td>
+                    <td>OE,MC</td>
+                    <td>169.7</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>MMLU-Pro</td>
+                    <td>❌</td>
+                    <td>1299</td>
+                    <td>COL</td>
+                    <td>MC</td>
+                    <td>52.1</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>GPQA</td>
+                    <td>❌</td>
+                    <td>227</td>
+                    <td>PH.D.</td>
+                    <td>OE</td>
+                    <td>111.4</td>
+                    <td>❌</td>
+                    <td>197.2</td>
+                    <td>3.6</td>
+                </tr>
+                <tr>
+                    <td>SciEval</td>
+                    <td>❌</td>
+                    <td>1657</td>
+                    <td>-</td>
+                    <td>OE,MC</td>
+                    <td>154.5</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>SciBench</td>
+                    <td>✅</td>
+                    <td>295</td>
+                    <td>COL</td>
+                    <td>OE</td>
+                    <td>80.5</td>
+                    <td>❌</td>
+                    <td>315.9</td>
+                    <td>2.8</td>
+                </tr>
+                <tr>
+                    <td>MMMU</td>
+                    <td>✅</td>
+                    <td>443</td>
+                    <td>COL</td>
+                    <td>OE,MC</td>
+                    <td>53.8</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>ScienceQA</td>
+                    <td>✅</td>
+                    <td>617</td>
+                    <td>K1-K12</td>
+                    <td>MC</td>
+                    <td>13.3</td>
+                    <td>❌</td>
+                    <td>63.0</td>
+                    <td>2.4</td>
+                </tr>
+                <tr>
+                    <td>OlympiadBench</td>
+                    <td>✅</td>
+                    <td>2334</td>
+                    <td>COMP</td>
+                    <td>OE</td>
+                    <td>222.0</td>
+                    <td>❌</td>
+                    <td>199.8</td>
+                    <td>3.7</td>
+                </tr>
+                <tr>
+                    <td>EMMA</td>
+                    <td>✅</td>
+                    <td>156</td>
+                    <td>-</td>
+                    <td>MC</td>
+                    <td>109.5</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>Ours-Knowledge</td>
+                    <td>✅</td>
+                    <td>300</td>
+                    <td>CEE+COMP</td>
+                    <td>OE</td>
+                    <td>163.7</td>
+                    <td>✅</td>
+                    <td>196.5</td>
+                    <td>3.3</td>
+                </tr>
+                <tr>
+                    <td>Ours-Easy</td>
+                    <td>✅</td>
+                    <td>300</td>
+                    <td>CEE+COMP</td>
+                    <td>OE</td>
+                    <td>171.2</td>
+                    <td>✅</td>
+                    <td>241.5</td>
+                    <td>5.0</td>
+                </tr>
+                <tr>
+                    <td>Ours-Medium</td>
+                    <td>✅</td>
+                    <td>300</td>
+                    <td>CEE+COMP</td>
+                    <td>OE</td>
+                    <td>229.2</td>
+                    <td>✅</td>
+                    <td>391.3</td>
+                    <td>8.4</td>
+                </tr>
+                <tr>
+                    <td>Ours-Hard</td>
+                    <td>✅</td>
+                    <td>300</td>
+                    <td>CEE+COMP</td>
+                    <td>OE</td>
+                    <td>340.9</td>
+                    <td>✅</td>
+                    <td>936.1</td>
+                    <td>15.6</td>
+                </tr>
+                <tr style="background-color: #f8f9fa;">
+                    <td>Ours-Full</td>
+                    <td>✅</td>
+                    <td>1200</td>
+                    <td>CEE+COMP</td>
+                    <td>OE</td>
+                    <td>226.3</td>
+                    <td>✅</td>
+                    <td>441.3</td>
+                    <td>8.1</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    
+    <style>
+    /* 添加表格相关的CSS样式 */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+    }
+    
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+    
+    th {
+        background-color: #f8f9fa;
+    }
+    
+    /* 设置表头合并单元格的样式 */
+    th[rowspan], th[colspan] {
+        vertical-align: middle;
+    }
+    
+    /* 设置✅和❌的颜色 */
+    td:contains('✅') {
+        color: green;
+    }
+    
+    td:contains('❌') {
+        color: red;
+    }
+    
+    /* 为最后一行添加浅灰色背景 */
+    tr:last-child {
+        background-color: #f8f9fa;
+    }
+    </style>
+
         <figure>
             <img src="fig/analysis_subplots_v2.png" alt="Analysis of solution theorems">
             <figcaption>Figure 1: Analysis of solution theorems, solution steps, and solution tokens across different problem categories</figcaption>
         </figure>
 
-        <figure>
-            <img src="fig/evaluation_case.pdf" alt="Step-level evaluation example">
-            <figcaption>Figure 2: Step-level evaluation example obtained from PSAS-S framework</figcaption>
-        </figure>
     </section>
 
     <section id="evaluation">
         <h2>Evaluation Framework</h2>
-        
-        <div class="algorithm">
-            <h3>Physics Solution Auto Scoring Framework-Step Level (PSAS-S)</h3>
-            <pre>
-Phase 1: Data Extraction
-Input: Model output M, Annotation solution steps S = {s₁, s₂, ..., sₙ},
-       Annotation step formulas F = {f₁, f₂, ..., fₙ},
-       Annotation step values V = {v₁, v₂, ..., vₙ}
-For sᵢ ∈ S:
-    Eᵢ ← LLM(ExtractTemplate(M, sᵢ))
-Assert |E| = |S|
-
-Phase 2: Scoring
-For (eᵢ, sᵢ) ∈ (E, S):
-    f̂ᵢ ← ExtractFormula(eᵢ)
-    v̂ᵢ ← ExtractValue(eᵢ)
-    scoreᵢ ← 0.5 × ScoreFormula(f̂ᵢ, fᵢ) + 0.5 × ScoreValue(v̂ᵢ, vᵢ)
-final_score ← ∑ᵢ₌₁ⁿ scoreᵢ / n
-
-Phase 3: First Error Step Detection
-first_error_step ← ∞
-For i ← 1 to |S|:
-    If scoreᵢ < 1:
-        error_step ← FindOriStep(M, eᵢ)
-        first_error_step ← min(first_error_step, error_step)
-
-Phase 4: Error Analysis
-ErrorTypes T = {DAE, PTAE, PCAE, PPUE, VRE, CPE, BCAE}
-If first_error_step < ∞:
-    j ← first_error_step
-    error_type ← LLM(ClassificationTemplate(eⱼ, sⱼ, T))
-    error_analysis ← LLM(AnalysisTemplate(eⱼ, sⱼ))
-Output: final_score, first_error_step, error_type, error_analysis
-            </pre>
+        <div class="framework-description">
+            <h3>PSAS-A (Answer Level Evaluation)</h3>
+            <p>PSAS-A evaluates based on sub-question answers. It extracts answers from the model's reasoning process using LLM, verifies semantic consistency, and calculates scores considering solution step lengths as weights for different sub-questions.</p>
+    
+            <h3>PSAS-S (Step Level Evaluation)</h3>
+            <p>PSAS-S provides detailed step-by-step assessment through four phases: data extraction, scoring, first error step detection, and error analysis. It identifies where models first deviate from correct reasoning paths and classifies error types.</p>
         </div>
-
-        <table>
-            <caption>Table 5: Comparison between PSAS framework and direct use of LLM evaluation</caption>
-            <thead>
-                <tr>
-                    <th>Model</th>
-                    <th>Answer Acc.</th>
-                    <th>Step Acc.</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Gemini-2.0-Flash</td>
-                    <td>87.81</td>
-                    <td>33.18</td>
-                </tr>
-                <tr>
-                    <td>Deepseek-V3</td>
-                    <td>89.78</td>
-                    <td>34.45</td>
-                </tr>
-                <tr>
-                    <td>Gemini-2.0-Flash-Thinking-0121</td>
-                    <td>91.24</td>
-                    <td>35.74</td>
-                </tr>
-                <tr>
-                    <td>Deepseek-R1</td>
-                    <td>93.31</td>
-                    <td>37.54</td>
-                </tr>
-                <tr>
-                    <td>Our (Gemini-2.0-Flash)</td>
-                    <td>98.96</td>
-                    <td>97.23</td>
-                </tr>
-                <tr>
-                    <td>Our (Deepseek-V3)</td>
-                    <td>99.35</td>
-                    <td>98.04</td>
-                </tr>
-            </tbody>
-        </table>
+        <figure>
+            <img src="fig/evaluation_case.png" alt="Step-level evaluation example">
+            <figcaption>Figure 2: Step-level evaluation example obtained from PSAS-S framework</figcaption>
+        </figure>
     </section>
 
     <section id="experiments">
