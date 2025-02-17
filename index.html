@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhysReason: A Physics-based Reasoning Benchmark</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        nav {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #e9ecef;
+            color: #1a73e8;
+        }
+
+        section {
+            background-color: #fff;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #1a73e8;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin: 1.5rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: #34495e;
+            margin: 1.2rem 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 2rem auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid #e9ecef;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .algorithm {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            font-family: monospace;
+        }
+
+        .algorithm pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        figure {
+            margin: 2rem 0;
+        }
+
+        figcaption {
+            text-align: center;
+            color: #666;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            section {
+                padding: 1rem;
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#benchmark">Benchmark</a></li>
+            <li><a href="#evaluation">Evaluation Framework</a></li>
+            <li><a href="#experiments">Experiments</a></li>
+        </ul>
+    </nav>
+
+    <section id="benchmark">
+        <h2>Benchmark</h2>
+        <h3>Key Components</h3>
+        <ul>
+            <li>1,200 physics problems covering multiple domains</li>
+            <li>25% knowledge-based, 75% reasoning-based questions</li>
+            <li>147 physics theorems</li>
+            <li>81% problems include diagrams</li>
+        </ul>
+
+        <h3>Data Collection Process</h3>
+        <ul>
+            <li>Acquisition: From global college entrance exams and competitions</li>
+            <li>Standardization: Using MinerU framework</li>
+            <li>Translation: Two-phase process with expert verification</li>
+            <li>Search Prevention: Exclude easily searchable problems</li>
+            <li>Difficulty Classification: Based on solving time and theorem complexity</li>
+        </ul>
+
+        <figure>
+            <img src="fig/analysis_subplots_v2.png" alt="Analysis of solution theorems">
+            <figcaption>Figure 1: Analysis of solution theorems, solution steps, and solution tokens across different problem categories</figcaption>
+        </figure>
+
+        <figure>
+            <img src="fig/evaluation_case.pdf" alt="Step-level evaluation example">
+            <figcaption>Figure 2: Step-level evaluation example obtained from PSAS-S framework</figcaption>
+        </figure>
+    </section>
+
+    <section id="evaluation">
+        <h2>Evaluation Framework</h2>
+        
+        <div class="algorithm">
+            <h3>Physics Solution Auto Scoring Framework-Step Level (PSAS-S)</h3>
+            <pre>
+Phase 1: Data Extraction
+Input: Model output M, Annotation solution steps S = {s₁, s₂, ..., sₙ},
+       Annotation step formulas F = {f₁, f₂, ..., fₙ},
+       Annotation step values V = {v₁, v₂, ..., vₙ}
+For sᵢ ∈ S:
+    Eᵢ ← LLM(ExtractTemplate(M, sᵢ))
+Assert |E| = |S|
+
+Phase 2: Scoring
+For (eᵢ, sᵢ) ∈ (E, S):
+    f̂ᵢ ← ExtractFormula(eᵢ)
+    v̂ᵢ ← ExtractValue(eᵢ)
+    scoreᵢ ← 0.5 × ScoreFormula(f̂ᵢ, fᵢ) + 0.5 × ScoreValue(v̂ᵢ, vᵢ)
+final_score ← ∑ᵢ₌₁ⁿ scoreᵢ / n
+
+Phase 3: First Error Step Detection
+first_error_step ← ∞
+For i ← 1 to |S|:
+    If scoreᵢ < 1:
+        error_step ← FindOriStep(M, eᵢ)
+        first_error_step ← min(first_error_step, error_step)
+
+Phase 4: Error Analysis
+ErrorTypes T = {DAE, PTAE, PCAE, PPUE, VRE, CPE, BCAE}
+If first_error_step < ∞:
+    j ← first_error_step
+    error_type ← LLM(ClassificationTemplate(eⱼ, sⱼ, T))
+    error_analysis ← LLM(AnalysisTemplate(eⱼ, sⱼ))
+Output: final_score, first_error_step, error_type, error_analysis
+            </pre>
+        </div>
+
+        <table>
+            <caption>Table 5: Comparison between PSAS framework and direct use of LLM evaluation</caption>
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>Answer Acc.</th>
+                    <th>Step Acc.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Gemini-2.0-Flash</td>
+                    <td>87.81</td>
+                    <td>33.18</td>
+                </tr>
+                <tr>
+                    <td>Deepseek-V3</td>
+                    <td>89.78</td>
+                    <td>34.45</td>
+                </tr>
+                <tr>
+                    <td>Gemini-2.0-Flash-Thinking-0121</td>
+                    <td>91.24</td>
+                    <td>35.74</td>
+                </tr>
+                <tr>
+                    <td>Deepseek-R1</td>
+                    <td>93.31</td>
+                    <td>37.54</td>
+                </tr>
+                <tr>
+                    <td>Our (Gemini-2.0-Flash)</td>
+                    <td>98.96</td>
+                    <td>97.23</td>
+                </tr>
+                <tr>
+                    <td>Our (Deepseek-V3)</td>
+                    <td>99.35</td>
+                    <td>98.04</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="experiments">
+        <h2>Experimental Results</h2>
+        
+        <table>
+            <caption>Table 3: Model performance comparisons on the PhysReason benchmark</caption>
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>Input</th>
+                    <th>Knowledge</th>
+                    <th>Easy</th>
+                    <th>Medium</th>
+                    <th>Hard</th>
+                    <th>Avg.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="7" style="background-color: #f8f9fa; font-weight: bold;">Non-O-like Models</td>
+                </tr>
+                <tr>
+                    <td>Qwen2VL-72B</td>
+                    <td>Q, I</td>
+                    <td>41.92/62.47</td>
+                    <td>24.04/45.26</td>
+                    <td>15.97/36.13</td>
+                    <td>4.83/24.23</td>
+                    <td>16.96/42.88</td>
+                </tr>
+                <!-- 接上文，在experiments部分的表格3中补充完整数据 -->
+                <tr>
+                    <td>InternVL2.5-78B</td>
+                    <td>Q, I</td>
+                    <td>28.34/64.71</td>
+                    <td>24.16/50.69</td>
+                    <td>17.72/38.56</td>
+                    <td>9.71/25.95</td>
+                    <td>19.98/45.89</td>
+                </tr>
+                <tr>
+                    <td>GPT-4o</td>
+                    <td>Q, I</td>
+                    <td>50.71/65.82</td>
+                    <td>33.87/51.98</td>
+                    <td>22.73/42.36</td>
+                    <td>11.03/24.71</td>
+                    <td>29.58/47.23</td>
+                </tr>
+                <tr>
+                    <td>Deepseek-V3-671B</td>
+                    <td>Q, IC</td>
+                    <td>55.86/66.14</td>
+                    <td>40.06/52.77</td>
+                    <td>26.63/44.02</td>
+                    <td>13.73/26.87</td>
+                    <td>34.07/48.42</td>
+                </tr>
+                <tr>
+                    <td>Claude-3.5-Sonnet</td>
+                    <td>Q, I</td>
+                    <td>54.14/66.45</td>
+                    <td>41.35/55.85</td>
+                    <td>28.14/44.86</td>
+                    <td>15.11/28.51</td>
+                    <td>34.69/49.88</td>
+                </tr>
+                <tr>
+                    <td>Gemini-2.0-Flash</td>
+                    <td>Q, I</td>
+                    <td>65.08/75.04</td>
+                    <td>54.84/68.60</td>
+                    <td>39.79/55.67</td>
+                    <td>21.99/38.39</td>
+                    <td>45.20/60.40</td>
+                </tr>
+                <tr>
+                    <td>Gemini-2.0-Pro</td>
+                    <td>Q, I</td>
+                    <td>67.99/79.01</td>
+                    <td>55.43/71.47</td>
+                    <td>44.29/57.74</td>
+                    <td>23.81/42.66</td>
+                    <td>47.88/62.74</td>
+                </tr>
+                <tr>
+                    <td colspan="7" style="background-color: #f8f9fa; font-weight: bold;">O-like Models</td>
+                </tr>
+                <tr>
+                    <td>o1-mini</td>
+                    <td>Q, IC</td>
+                    <td>53.90/65.74</td>
+                    <td>35.21/52.26</td>
+                    <td>22.24/40.19</td>
+                    <td>10.61/26.80</td>
+                    <td>30.49/47.18</td>
+                </tr>
+                <tr>
+                    <td>QvQ-72B</td>
+                    <td>Q, I</td>
+                    <td>62.44/70.92</td>
+                    <td>53.74/64.65</td>
+                    <td>28.18/54.88</td>
+                    <td>14.30/36.47</td>
+                    <td>32.67/57.66</td>
+                </tr>
+                <tr>
+                    <td>Gemini-2.0-T†</td>
+                    <td>Q, I</td>
+                    <td>65.35/77.20</td>
+                    <td>51.89/67.49</td>
+                    <td>44.43/58.95</td>
+                    <td>27.14/45.48</td>
+                    <td>47.20/63.07</td>
+                </tr>
+                <tr>
+                    <td>QwQ-32B</td>
+                    <td>Q, IC</td>
+                    <td>62.03/76.28</td>
+                    <td>54.92/71.08</td>
+                    <td>43.64/62.14</td>
+                    <td>22.99/42.19</td>
+                    <td>45.89/63.87</td>
+                </tr>
+                <tr>
+                    <td>GLM-Zero</td>
+                    <td>Q, IC</td>
+                    <td>64.95/80.36</td>
+                    <td>54.11/71.54</td>
+                    <td>41.32/63.67</td>
+                    <td>23.04/47.46</td>
+                    <td>46.52/65.76</td>
+                </tr>
+                <tr>
+                    <td>o3-mini-high</td>
+                    <td>Q, IC</td>
+                    <td>70.67/83.61</td>
+                    <td>67.20/81.95</td>
+                    <td>45.31/64.57</td>
+                    <td>30.12/47.23</td>
+                    <td>53.32/69.34</td>
+                </tr>
+                <tr>
+                    <td>Gemini-2.0-T*</td>
+                    <td>Q, I</td>
+                    <td>73.44/84.15</td>
+                    <td>63.17/75.94</td>
+                    <td>50.41/66.60</td>
+                    <td>31.90/48.47</td>
+                    <td>54.73/69.73</td>
+                </tr>
+                <tr>
+                    <td>Deepseek-R1</td>
+                    <td>Q, IC</td>
+                    <td>75.11/85.91</td>
+                    <td>65.08/79.81</td>
+                    <td>54.84/72.02</td>
+                    <td>31.95/51.50</td>
+                    <td>56.75/73.26</td>
+                </tr>
+                <!-- [Additional rows omitted for brevity - will continue in next part] -->
+            </tbody>
+        </table>
+
+        <table>
+            <caption>Table 4: Comparison on PhysReason-mini with PSAS-A</caption>
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>K.</th>
+                    <th>E.</th>
+                    <th>M.</th>
+                    <th>H.</th>
+                    <th>Avg.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>o1-mini</td>
+                    <td>54.80</td>
+                    <td>30.33</td>
+                    <td>15.41</td>
+                    <td>7.92</td>
+                    <td>27.11</td>
+                </tr>
+                <tr>
+                    <td>QvQ-72B</td>
+                    <td>51.17</td>
+                    <td>37.10</td>
+                    <td>29.83</td>
+                    <td>22.13</td>
+                    <td>35.06</td>
+                </tr>
+                <tr>
+                    <td>QwQ-32B</td>
+                    <td>64.40</td>
+                    <td>50.07</td>
+                    <td>38.88</td>
+                    <td>27.45</td>
+                    <td>45.20</td>
+                </tr>
+                <tr>
+                    <td>Gemini-2.0-T†</td>
+                    <td>71.47</td>
+                    <td>49.97</td>
+                    <td>36.83</td>
+                    <td>22.97</td>
+                    <td>45.42</td>
+                </tr>
+                <tr>
+                    <td>GLM-Zero</td>
+                    <td>72.70</td>
+                    <td>50.17</td>
+                    <td>43.42</td>
+                    <td>24.70</td>
+                    <td>47.75</td>
+                </tr>
+                <tr>
+                    <td>o1</td>
+                    <td>72.47</td>
+                    <td>53.37</td>
+                    <td>49.31</td>
+                    <td>25.32</td>
+                    <td>50.12</td>
+                </tr>
+                <tr>
+                    <td>o3-mini-high</td>
+                    <td>71.10</td>
+                    <td>63.20</td>
+                    <td>47.02</td>
+                    <td>31.93</td>
+                    <td>53.31</td>
+                </tr>
+                <tr>
+                    <td>Gemini-2.0-T*</td>
+                    <td>76.33</td>
+                    <td>56.87</td>
+                    <td>51.85</td>
+                    <td>32.61</td>
+                    <td>54.42</td>
+                </tr>
+                <tr>
+                    <td>Deepseek-R1</td>
+                    <td>85.17</td>
+                    <td>60.77</td>
+                    <td>47.24</td>
+                    <td>33.23</td>
+                    <td>56.60</td>
+                </tr>
+                <!-- [Additional rows omitted for brevity - will continue in next part] -->
+            </tbody>
+        </table>
+
+        <figure>
+            <img src="fig/error_types_count_selected.png" alt="Error statistics">
+            <figcaption>Figure 3: Error statistics with PSAS-S framework</figcaption>
+        </figure>
+
+        <figure>
+            <img src="fig/model_performance_analysis_v2.png" alt="Performance analysis">
+            <figcaption>Figure 4: Performance with PSAS-S framework in hard problems</figcaption>
+        </figure>
+    </section>
+</body>
+</html>
