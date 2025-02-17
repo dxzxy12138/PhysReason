@@ -1,4 +1,4 @@
-# DiagramQG: A Dataset for Generating Concept-Focused Questions from Diagrams 
+# PhysReason: A Comprehensive Benchmark towards Physics-Based Reasoning
 ## Overview
 
 PhysReason is a comprehensive physics-based reasoning benchmark consisting of 1,200 physics problems spanning multiple domains, with a focus on both knowledge-based (25%) and reasoning-based (75%) questions.
