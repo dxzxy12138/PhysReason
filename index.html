@@ -3,8 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PhysReason: A Physics-based Reasoning Benchmark</title>
+    <title>PhysReason: A Comprehensive Benchmark</title>
     <style>
+        :root {
+            --primary-color: #1a73e8;
+            --secondary-color: #2c3e50;
+            --border-color: #e9ecef;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,7 +20,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
             line-height: 1.6;
             color: #333;
             max-width: 1200px;
@@ -21,10 +29,31 @@
             background-color: #f8f9fa;
         }
 
+        .title-container {
+            text-align: center;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            background: linear-gradient(120deg, #1a73e8, #4285f4);
+            border-radius: 12px;
+            color: white;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
         nav {
             background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            padding: 1rem;
+            box-shadow: var(--shadow-sm);
+            padding: 1.2rem;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -37,44 +66,49 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
         nav a {
             text-decoration: none;
-            color: #2c3e50;
+            color: var(--secondary-color);
             font-weight: 500;
             padding: 0.5rem 1rem;
-            border-radius: 4px;
+            border-radius: 6px;
             transition: all 0.3s ease;
         }
 
         nav a:hover {
             background-color: #e9ecef;
-            color: #1a73e8;
+            color: var(--primary-color);
+            transform: translateY(-2px);
         }
 
         section {
             background-color: #fff;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            color: #1a73e8;
-            margin-bottom: 1.5rem;
-            text-align: center;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
         }
 
         h2 {
             font-size: 2rem;
-            color: #2c3e50;
+            color: var(--secondary-color);
             margin: 1.5rem 0;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid var(--border-color);
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100px;
+            height: 2px;
+            background-color: var(--primary-color);
         }
 
         h3 {
@@ -83,78 +117,43 @@
             margin: 1.2rem 0;
         }
 
-        p {
-            margin-bottom: 1rem;
-        }
-
-        ul, ol {
-            margin-left: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        li {
-            margin-bottom: 0.5rem;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 2rem auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
+        /* Table styles enhanced */
         table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
             margin: 2rem 0;
             background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: var(--shadow-sm);
+            border-radius: 8px;
+            overflow: hidden;
         }
 
         th, td {
-            padding: 1rem;
+            padding: 1.2rem;
             text-align: left;
-            border: 1px solid #e9ecef;
+            border-bottom: 1px solid var(--border-color);
         }
 
         th {
             background-color: #f8f9fa;
             font-weight: 600;
+            color: var(--secondary-color);
         }
 
-        tr:hover {
+        tbody tr:hover {
             background-color: #f8f9fa;
+            transition: background-color 0.2s ease;
         }
 
-        .algorithm {
-            background-color: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 2rem 0;
-            font-family: monospace;
-        }
-
-        .algorithm pre {
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-
-        figure {
-            margin: 2rem 0;
-        }
-
-        figcaption {
-            text-align: center;
-            color: #666;
-            margin-top: 1rem;
-            font-style: italic;
-        }
-
+        /* Responsive improvements */
         @media screen and (max-width: 768px) {
             body {
                 padding: 10px;
+            }
+
+            .title {
+                font-size: 2rem;
             }
 
             nav ul {
@@ -163,17 +162,42 @@
             }
 
             section {
-                padding: 1rem;
+                padding: 1.5rem;
             }
 
             table {
                 display: block;
                 overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            th, td {
+                white-space: nowrap;
+                padding: 0.8rem;
+            }
+        }
+
+        /* Animation for sections */
+        section {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
 </head>
 <body>
+    <!-- Previous content remains the same -->
+    <div class="title-container">
+        <h1 class="title">PhysReason: A Comprehensive Benchmark</h1>
+        <p class="subtitle">towards Physics-Based Reasoning</p>
+    </div>
     <nav>
         <ul>
             <li><a href="#benchmark">Benchmark</a></li>
