@@ -5,73 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PhysReason: A Comprehensive Benchmark towards Physics-Based Reasoning </title>
     <style>
-        .resource-links {
-        background: linear-gradient(135deg, #f6f8fa, #fff);
-        padding: 1.5rem;
+            .resources-section {
+        background-color: #fff;
+        padding: 2.5rem;
+        margin-bottom: 2.5rem;
         border-radius: 12px;
-        margin: 2rem 0;
         box-shadow: var(--shadow-sm);
     }
 
-        .resource-container {
-            max-width: 800px;
-            margin: 0 auto;
+    .resource-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+    }
+
+    .resource-card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        text-decoration: none;
+        color: var(--secondary-color);
+        transition: all 0.3s ease;
+    }
+
+    .resource-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-sm);
+        background: #fff;
+    }
+
+    .resource-content h3 {
+        color: var(--primary-color);
+        margin: 0 0 0.5rem 0;
+        font-size: 1.25rem;
+    }
+
+    .resource-content p {
+        margin: 0;
+        color: #666;
+    }
+
+    .resource-arrow {
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        opacity: 0.5;
+        transition: opacity 0.3s ease;
+    }
+
+    .resource-card:hover .resource-arrow {
+        opacity: 1;
+    }
+
+    /* Update footer to match section style */
+    footer {
+        background-color: #fff;
+        padding: 2.5rem;
+        margin-top: 2.5rem;
+        border-radius: 12px;
+        box-shadow: var(--shadow-sm);
+    }
+
+    /* Responsive adjustments */
+    @media screen and (max-width: 768px) {
+        .resource-grid {
+            grid-template-columns: 1fr;
         }
 
-        .resource-links h3 {
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
+        .resources-section, footer {
+            padding: 1.5rem;
+            margin: 1.5rem 0;
         }
-
-        .resource-links ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .resource-links li {
-            margin: 0.8rem 0;
-        }
-
-        .resource-links a {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: var(--primary-color);
-            padding: 0.8rem 1.2rem;
-            background: white;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .resource-links a:hover {
-            background: #f8f9fa;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .link-icon {
-            margin-left: 0.5rem;
-            font-size: 0.9em;
-        }
-        :root {
-            --primary-color: #1a73e8;
-            --secondary-color: #2c3e50;
-            --border-color: #e9ecef;
-            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
-            --shadow-md: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        @media screen and (max-width: 768px) {
-            .resource-links {
-                padding: 1rem;
-                margin: 1rem 0;
-            }
-
-            .resource-links a {
-                padding: 0.6rem 1rem;
-            }
-        }
+    }
 
         * {
             margin: 0;
@@ -312,25 +321,25 @@
         <h1 class="title">PhysReason: A Comprehensive Benchmark towards Physics-Based Reasoning</h1>
         <p class="subtitle">towards Physics-Based Reasoning</p>
     </div>
-    <div class="resource-links">
-    <div class="resource-container">
-        <h3>Resources</h3>
-        <ul>
-            <li>
-                <a href="https://huggingface.co/datasets/zhibei1204/PhysReason" target="_blank" rel="noopener noreferrer">
-                    Dataset: PhysReason on Hugging Face 
-                    <span class="link-icon">↗</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://github.com/dxzxy12138/PhysReason" target="_blank" rel="noopener noreferrer">
-                    Code: GitHub Repository
-                    <span class="link-icon">↗</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
+    <section class="resources-section">
+        <h2>Resources</h2>
+        <div class="resource-grid">
+            <a href="https://huggingface.co/datasets/zhibei1204/PhysReason" class="resource-card" target="_blank" rel="noopener noreferrer">
+                <div class="resource-content">
+                    <h3>Dataset</h3>
+                    <p>Access the PhysReason dataset on Hugging Face</p>
+                </div>
+                <span class="resource-arrow">→</span>
+            </a>
+            <a href="https://github.com/dxzxy12138/PhysReason" class="resource-card" target="_blank" rel="noopener noreferrer">
+                <div class="resource-content">
+                    <h3>Code</h3>
+                    <p>View evaluation code on GitHub</p>
+                </div>
+                <span class="resource-arrow">→</span>
+            </a>
+        </div>
+    </section>
     <nav>
         <ul>
             <li><a href="#benchmark">Benchmark</a></li>
@@ -862,13 +871,14 @@
 <footer>
     <div class="footer-content">
         <p>
-            For more information and detailed documentation, please visit the 
+            For detailed documentation and implementation details, please refer to our GitHub repository and dataset page on Hugging Face.
             <a href="https://github.com/dxzxy12138/PhysReason" target="_blank" rel="noopener noreferrer">GitHub repository</a> 
-            or access the dataset on 
+            The codebase includes evaluation frameworks, benchmarking tools, and comprehensive documentation.
             <a href="https://huggingface.co/datasets/zhibei1204/PhysReason" target="_blank" rel="noopener noreferrer">Hugging Face</a>.
         </p>
     </div>
 </footer>
+
 
 <style>
     /* Add these footer styles */
