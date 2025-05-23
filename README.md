@@ -60,11 +60,11 @@ PhysReason is a comprehensive physics-based reasoning benchmark consisting of 1,
     4. Error analysis
    
 ### Core Evaluation Files
-answer_evaluation_with_ds_ch_prompt.py: Answer-level evaluation using Chinese prompts for Deepseek models
-answer_evaluation_with_ds_en_prompt.py: Answer-level evaluation using English prompts for Deepseek models
-format_result_ds.py: Optimizes unstable outputs into stable, consistent formats
-step_evaluation_with_ds_ch_prompt.py: Step-level evaluation using Chinese prompts for Deepseek models
-step_evaluation_with_ds_en_prompt.py: Step-level evaluation using English prompts for Deepseek models
+  - answer_evaluation_with_ds_ch_prompt.py: Answer-level evaluation using Chinese prompts for Deepseek models
+  - answer_evaluation_with_ds_en_prompt.py: Answer-level evaluation using English prompts for Deepseek models
+  - format_result_ds.py: Optimizes unstable outputs into stable, consistent formats
+  - step_evaluation_with_ds_ch_prompt.py: Step-level evaluation using Chinese prompts for Deepseek models
+  - step_evaluation_with_ds_en_prompt.py: Step-level evaluation using English prompts for Deepseek models
 
   ## Experimental Results
 
