@@ -1,9 +1,8 @@
 # PhysReason: A Comprehensive Benchmark towards Physics-Based Reasoning
 
-[[arXiv](https://img.shields.io/badge/arXiv-2502.12054-b31b1b.svg)](https://arxiv.org/abs/2502.12054)
+[![arXiv](https://img.shields.io/badge/arXiv-2502.12054-b31b1b.svg)](https://arxiv.org/abs/2502.12054)
 [![Dataset](https://img.shields.io/badge/🤗%20Hugging%20Face-Dataset-yellow)](https://huggingface.co/datasets/zhibei1204/PhysReason)
 [![Project Page](https://img.shields.io/badge/🌐%20Project-Page-blue)](https://dxzxy12138.github.io/PhysReason/)
-[[License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 > **PhysReason is accepted by ACL-2025-main**
 
