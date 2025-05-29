@@ -70,19 +70,7 @@ Provides detailed step-by-step assessment through four phases:
    - Calculation
    - Physics Condition Analysis
 
-## 🚀 Installation & Usage
-
-```bash
-# Clone the repository
-git clone https://github.com/dxzxy12138/PhysReason.git
-cd PhysReason
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Download the dataset
-python download_dataset.py
-```
+## 🚀 Usage
 
 ### Core Evaluation Files
 - `answer_evaluation_with_ds_ch_prompt.py`: Answer-level evaluation using Chinese prompts
@@ -150,7 +138,7 @@ If you find PhysReason useful in your research, please cite our paper:
 
 ```bibtex
 @article{zhang2025physreason,
-  title={PhysReason: A Comprehensive Benchmark towards Physics-Based Reasoning},
+  title={Physreason: A comprehensive benchmark towards physics-based reasoning},
   author={Zhang, Xinyu and Dong, Yuxuan and Wu, Yanrui and Huang, Jiaxing and Jia, Chengyou and Fernando, Basura and Shou, Mike Zheng and Zhang, Lingling and Liu, Jun},
   journal={arXiv preprint arXiv:2502.12054},
   year={2025}
@@ -161,15 +149,9 @@ If you find PhysReason useful in your research, please cite our paper:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🤝 Contributing
-
-We welcome contributions to PhysReason! Please see our [contributing guidelines](CONTRIBUTING.md) for more details.
-
 ## 📧 Contact
 
-- **Project Maintainer**: [Chengyou Jia](mailto:chengyoujia@example.com)
-- **Issues**: Please open an issue on GitHub for any questions or bugs
-- **Discussions**: Join our community discussions on the Hugging Face dataset page
+We welcome contributions to PhysReason! Please contact us for more details.
 
 ---
 
